@@ -1,0 +1,20 @@
+This is the output of the problem:
+
+Loyal user: user1@example.com
+Loyal user: user5@example.com
+
+
+User1 and User5 visited the website for at least two days and
+also clicked on 3 pages each on at least two days.
+
+
+Time and space complexity of this problem:
+Time Complexity (Worst Case): O(n * m + u)
+
+n: Number of log files
+m: Average number of lines in a log file
+u: Number of unique users
+
+Space Complexity (Worst Case): O(u)
+
+u: Number of unique users
