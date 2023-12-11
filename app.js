@@ -45,7 +45,7 @@ function processLogFile(line, loyalUsers) {
 
   // Update user information in the Map
   if (!loyalUsers.has(userId)) {
-    loyalUsers.set(userId, { visitCount: 0, pageClickCount: new Map(), visitDates: new Set() });
+    loyalUsers.set(userId, { visitCount: 0, pageClickCount: new Map(), visitDates: new Set(), uniquePages: new Set() });
   }
 
   const user = loyalUsers.get(userId);
@@ -55,9 +55,15 @@ function processLogFile(line, loyalUsers) {
   if (!user.visitDates.has(currentDate)) {
     user.visitDates.add(currentDate);
     user.visitCount++;
+    user.pageClickCount.set(currentDate, 0); // Reset the click count for a new day
+    user.uniquePages.clear(); // Clear the set for a new day
   }
 
-  user.pageClickCount.set(currentDate, (user.pageClickCount.get(currentDate) || 0) + 1);
+  // Check if the clicked page is unique for the day
+  if (!user.uniquePages.has(pageVisited)) {
+    user.uniquePages.add(pageVisited);
+    user.pageClickCount.set(currentDate, user.pageClickCount.get(currentDate) + 1);
+  }
 }
 
 function formatDate(date) {
@@ -69,3 +75,4 @@ function formatDate(date) {
 
 // Passing the log folder 
 findLoyalUsers('log_files');
+
