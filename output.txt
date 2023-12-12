@@ -70,9 +70,15 @@ least three unique pages on at least two different days.
 
 -------------------------------Complexity-------------------------------------------------------------------
 
-Time complexity: O(N * M), where N is the total number of log entries across
-all log files, and M is the average number of log entries in each log file.
+Time Complexity: O(n log m)
+Space Complexity: O(n + m)
 
+n: represents the number of files in the log directory.
+m: represents the total number of lines across all the log files.
+log: refers to the base of the logarithm used in the time complexity notation.
 
-Space complexity: O(U), where U is the total number of unique users
-found in the log files.
+O(n log m) indicates that the time complexity grows logarithmically with the number of lines (m) 
+but also depends linearly on the number of files (n).
+
+Similarly, O(n + m) signifies that the space 
+complexity increases linearly with both the number of files (n) and the total number of lines (m).
